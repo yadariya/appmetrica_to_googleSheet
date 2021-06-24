@@ -139,14 +139,56 @@ public class Main {
         }
     }
 
+    public static String indexTranslator (int index){
+        char starter = 'A';
+        int starterInt = starter-1;
+        ArrayList<Integer> list = new ArrayList<>();
+        while (index>26){
+            double div = index/26;
+            div = Math.floor(div);
+            list.add(index-(int)(div)*26);
+            index = (int)div;
+        }
+        list.add(index);
+        String answer = "";
+        ArrayList<Character> characters = new ArrayList<>();
+        for (int i =list.size()-1; i>=0; i--){
+            char character = (char)(starterInt+list.get(i));
+            characters.add(character);
+        }
+
+        if (characters.get(characters.size()-1) == '@'){
+            for (int i =0; i<characters.size(); i++){
+                char a = (char)characters.get(i);
+                a = (char)(a-1);
+                characters.set(i, a);
+                if (i == characters.size()-1){
+                    a = 'Z';
+                    characters.set(i, a);
+                }
+            }
+        }
+        for (int i = 0; i<characters.size(); i++){
+            answer = answer+characters.get(i);
+        }
+        return answer;
+    }
+
     public static void main(String[] args) throws IOException {
 
-        ArrayList<Banner> banners = statsParser("2021-06-07","2021-06-13");
+        /*ArrayList<Banner> banners = statsParser("2021-06-07","2021-06-13");
         BannerSorter(banners);
         for (int j=0; j<banners.size(); j++){
             System.out.println("Index: "+ banners.get(j).index+", Accept Events: "+banners.get(j).acceptEvent+", Skip Events: "+banners.get(j).skipEvent);
             System.out.println("Accept users: "+ banners.get(j).acceptUsers+ ", Skip users: "+banners.get(j).skipUsers);
+        }*/
+        for (int i = 1; i<100; i++) {
+            String index = indexTranslator(i);
+            System.out.print(index+", ");
+            if (i%10==0){
+                System.out.println();
+            }
         }
-        
+
     }
 }
