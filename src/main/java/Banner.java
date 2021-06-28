@@ -4,7 +4,8 @@ public class Banner {
     int acceptEvent;
     int skipUsers;
     int acceptUsers;
-    public Banner (int index){
+
+    public Banner(int index) {
         this.index = index;
     }
 }
