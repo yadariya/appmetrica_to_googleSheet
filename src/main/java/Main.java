@@ -117,9 +117,9 @@ public class Main {
         String week_starts = scn.nextLine();
         System.out.println("Enter end date in format YYYY-MM-DD");
         String week_ends = scn.nextLine();
-        System.out.println("Enter the start of range");
+        System.out.println("Enter the start of range with capital letters");
         String rangeStart = scn.nextLine();
-        System.out.println("Enter the end of range");
+        System.out.println("Enter the end of range with capital letters");
         String rangeEnd = scn.nextLine();
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         Sheets service = new Sheets.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
