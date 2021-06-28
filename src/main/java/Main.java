@@ -1,3 +1,5 @@
+package com.company;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -44,8 +46,7 @@ public class Main {
         data = data.substring(firstSubstring + 7);
         return data;
     }
-
-    public static ArrayList<Banner> statsParser(String date1, String date2) throws IOException {
+    public static ArrayList<Banner> statsParser (String date1, String date2)throws IOException{
         //"2021-06-07" - string date format
         String data = HTTPRequest(date1, date2, 0);
         ArrayList<String> dividedDataSkip = new ArrayList<>();
@@ -107,15 +108,15 @@ public class Main {
             int ind = Integer.parseInt(index);
             int events = Integer.parseInt(SkipEvents);
             int users = Integer.parseInt(SkipUsers);
-            int exists = 0;
-            for (int j = 0; j < banners.size(); j++) {
+            int exists=0;
+            for (int j=0; j<banners.size(); j++){
                 if (ind == banners.get(j).index) {
                     exists = 1;
                     banners.get(j).acceptEvent = events;
                     banners.get(j).acceptUsers = users;
                 }
             }
-            if (exists != 1) {
+            if (exists!=1) {
                 banners.add(new Banner(ind));
                 banners.get(i).skipEvent = 0;
                 banners.get(i).skipUsers = 0;
@@ -126,10 +127,10 @@ public class Main {
         return banners;
     }
 
-    public static void BannerSorter(ArrayList<Banner> banners) {
-        for (int i = 0; i < banners.size(); i++) {
-            for (int j = i + 1; j < banners.size(); j++) {
-                if (banners.get(j).index < banners.get(i).index) {
+    public static void BannerSorter (ArrayList<Banner> banners){
+        for (int i=0; i<banners.size(); i++){
+            for (int j=i+1; j<banners.size();j++){
+                if (banners.get(j).index<banners.get(i).index){
                     Banner temporary = banners.get(i);
                     banners.set(i, banners.get(j));
                     banners.set(j, temporary);
@@ -138,49 +139,14 @@ public class Main {
         }
     }
 
-    public static String indexTranslator(int index) {
-        char starter = 'A';
-        int starterInt = starter - 1;
-        ArrayList<Integer> list = new ArrayList<>();
-        while (index > 26) {
-            double div = index / 26;
-            div = Math.floor(div);
-            list.add(index - (int) (div) * 26);
-            index = (int) div;
-        }
-        list.add(index);
-        String answer = "";
-        ArrayList<Character> characters = new ArrayList<>();
-        for (int i = list.size() - 1; i >= 0; i--) {
-            char character = (char) (starterInt + list.get(i));
-            characters.add(character);
-        }
-
-        if (characters.get(characters.size() - 1) == '@') {
-            for (int i = 0; i < characters.size(); i++) {
-                char a = (char) characters.get(i);
-                a = (char) (a - 1);
-                characters.set(i, a);
-                if (i == characters.size() - 1) {
-                    a = 'Z';
-                    characters.set(i, a);
-                }
-            }
-        }
-        for (int i = 0; i < characters.size(); i++) {
-            answer = answer + characters.get(i);
-        }
-        return answer;
-    }
-
     public static void main(String[] args) throws IOException {
 
-        ArrayList<Banner> banners = statsParser("2021-06-07", "2021-06-13");
+        ArrayList<Banner> banners = statsParser("2021-06-07","2021-06-13");
         BannerSorter(banners);
-        for (int j = 0; j < banners.size(); j++) {
-            System.out.println("Index: " + banners.get(j).index + ", Accept Events: " + banners.get(j).acceptEvent + ", Skip Events: " + banners.get(j).skipEvent);
-            System.out.println("Accept users: " + banners.get(j).acceptUsers + ", Skip users: " + banners.get(j).skipUsers);
+        for (int j=0; j<banners.size(); j++){
+            System.out.println("Index: "+ banners.get(j).index+", Accept Events: "+banners.get(j).acceptEvent+", Skip Events: "+banners.get(j).skipEvent);
+            System.out.println("Accept users: "+ banners.get(j).acceptUsers+ ", Skip users: "+banners.get(j).skipUsers);
         }
-
+        
     }
 }
