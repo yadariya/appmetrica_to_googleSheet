@@ -29,7 +29,7 @@ public class Main {
 
     private static final List<String> SCOPES = Collections.singletonList(SheetsScopes.SPREADSHEETS);
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
-    static final String spreadsheetId = "1Ymt4EVASN4Fl4v2r7bsffbFK8PixN2VypUYj7li6R-o"; //id of google sheet
+    static final String spreadsheetId = ""; //id of google sheet
 
 
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
