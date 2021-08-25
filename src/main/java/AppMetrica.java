@@ -6,7 +6,7 @@ public class AppMetrica {
     public static String HTTPRequest(String date1, String date2, int flag) throws IOException {
         URL url;
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("ids", "1485194");
+        parameters.put("ids", "");
         parameters.put("metrics", "ym:ce2:fgEvents,norm(ym:ce2:fgEvents),ym:ce2:usersWithEvent,norm(ym:ce2:usersWithEvent),ym:ce2:eventsPerUser,ym:ce2:usersPercent,ym:ce2:hasParamsLevel5");
         parameters.put("date1", date1);
         parameters.put("date2", date2);
@@ -20,10 +20,10 @@ public class AppMetrica {
         parameters.put("dimensions", "ym:ce2:eventLabel,ym:ce2:paramsLevel1,ym:ce2:paramsLevel2,ym:ce2:paramsLevel3,ym:ce2:paramsLevel4");
         String urlParams = ParameterStringBuilder.getParamsString(parameters);
 
-        url = new URL("https://api.appmetrica.yandex.ru/stat/v1/data?" + urlParams);
+        url = new URL("appmetrica_link" + urlParams);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
-        con.setRequestProperty("Authorization", "OAuth AQAEA7qjwp_mAAcwuZ8fQOdpT0r0up4PANA0F90");
+        con.setRequestProperty("Authorization", "OAuth 0");
 
 
         int status = con.getResponseCode();
